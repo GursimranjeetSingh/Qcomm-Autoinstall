@@ -78,8 +78,8 @@ ask_for_prompt(){
 
     
     else
-        echo 'Qcomm will be running on http://' + $machine_ip + '/'
-        backend_domain_name=$machine_ip + ':8000'
+        echo "Qcomm will be running on http://${machine_ip}/"
+        backend_domain_name="${machine_ip}:8000"
     fi
 
     read -p "Do you want to set up a MySQL database? (y/n): " setup_mysql
