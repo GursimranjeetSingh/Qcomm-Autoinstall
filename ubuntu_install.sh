@@ -334,7 +334,6 @@ sudo usermod -aG $(whoami) www-data
 sudo nginx -t
 sudo systemctl restart nginx
 sleep 10 && sudo systemctl status nginx
-    fi
 }
 
 
