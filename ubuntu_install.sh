@@ -26,7 +26,7 @@ export GIT_TERMINAL_PROMPT=0
 
 #defining variables
 have_domains=''
-machine_ip= $(hostname -I | cut -d' ' -f1)
+machine_ip = $(hostname -I | cut -d' ' -f1)
 backend_domain=''
 frontend_domain=''
 enable_ssl=''
