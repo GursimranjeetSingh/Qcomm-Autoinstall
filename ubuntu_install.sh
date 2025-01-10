@@ -93,8 +93,8 @@ install_essentials() {
 
 }
 
-unzipping_folders(){
-    sudo apt install unzip
+unzipping_folders() {
+    sudo apt install -y unzip
     unzip Qcomm_Signage.zip -d ${CURRENT_DIR}
     mkdir -p ${CURRENT_DIR}/SmartTickerFrontend
     mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/SmartTickerFrontend
@@ -103,8 +103,9 @@ unzipping_folders(){
     cd ${CURRENT_DIR}
     for file in ${CURRENT_DIR}/SmartTickerFrontend/main*; do
         sed -i 's|https://domain.com|'${PROTOCOL}://${backend_domain_name}'|g' "$file"
-
+    done
 }
+
 
 # Function to install Python 3.7.14
 install_python() {
