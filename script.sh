@@ -74,14 +74,14 @@ install_essentials() {
 #     if [ "$OS" = "ubuntu" ]; then
 #         sudo apt install unzip
 #         unzip SmartTicker.zip -d ${CURRENT_DIR}
-#         mkdir -p ${CURRENT_DIR}/SmartTickerFrontend
-#         mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/SmartTickerFrontend
-#         cd ${CURRENT_DIR}/SmartTickerFrontend
+#         mkdir -p ${CURRENT_DIR}/Qcomm_Frontend
+#         mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/Qcomm_Frontend
+#         cd ${CURRENT_DIR}/Qcomm_Frontend
 #         unzip dist.zip
 #         cd ${CURRENT_DIR}
 
 #         # Create api_url.json and insert backend domain
-#         cat <<EOF | tee ${CURRENT_DIR}/SmartTickerFrontend/api_url.json >/dev/null
+#         cat <<EOF | tee ${CURRENT_DIR}/Qcomm_Frontend/api_url.json >/dev/null
 # {
 #     "backend_domain": "${PROTOCOL}://${backend_domain_name}"
 # }
@@ -90,14 +90,14 @@ install_essentials() {
 #     elif [ "$OS" = "centos" ] || [ "$OS" = "rhel" ]; then
 #         sudo yum install -y unzip
 #         unzip SmartTicker.zip -d ${CURRENT_DIR}
-#         mkdir -p ${CURRENT_DIR}/SmartTickerFrontend
-#         mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/SmartTickerFrontend
-#         cd ${CURRENT_DIR}/SmartTickerFrontend
+#         mkdir -p ${CURRENT_DIR}/Qcomm_Frontend
+#         mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/Qcomm_Frontend
+#         cd ${CURRENT_DIR}/Qcomm_Frontend
 #         unzip dist.zip
 #         cd ${CURRENT_DIR}
 
 #         # Create api_url.json and insert backend domain
-#         cat <<EOF | tee ${CURRENT_DIR}/SmartTickerFrontend/api_url.json >/dev/null
+#         cat <<EOF | tee ${CURRENT_DIR}/Qcomm_Frontend/api_url.json >/dev/null
 # {
 #     "backend_domain": "${PROTOCOL}://${backend_domain_name}"
 # }
@@ -113,23 +113,23 @@ unzipping_folders() {
     if [ "$OS" = "ubuntu" ]; then
         sudo apt install unzip
         unzip Qcomm_Signage.zip -d ${CURRENT_DIR}
-        mkdir -p ${CURRENT_DIR}/SmartTickerFrontend
-        mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/SmartTickerFrontend
-        cd ${CURRENT_DIR}/SmartTickerFrontend
+        mkdir -p ${CURRENT_DIR}/Qcomm_Frontend
+        mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/Qcomm_Frontend
+        cd ${CURRENT_DIR}/Qcomm_Frontend
         unzip dist.zip
         cd ${CURRENT_DIR}
-        for file in ${CURRENT_DIR}/SmartTickerFrontend/main*; do
+        for file in ${CURRENT_DIR}/Qcomm_Frontend/main*; do
             sed -i 's|https://domain.com|'${PROTOCOL}://${backend_domain_name}'|g' "$file"
         done
     elif [ "$OS" = "centos" ] || [ "$OS" = "rhel" ]; then
         sudo yum install -y unzip
         unzip Qcomm_Signage.zip -d ${CURRENT_DIR}
-        mkdir -p ${CURRENT_DIR}/SmartTickerFrontend
-        mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/SmartTickerFrontend
-        cd ${CURRENT_DIR}/SmartTickerFrontend
+        mkdir -p ${CURRENT_DIR}/Qcomm_Frontend
+        mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/Qcomm_Frontend
+        cd ${CURRENT_DIR}/Qcomm_Frontend
         unzip dist.zip
         cd ${CURRENT_DIR}
-        for file in ${CURRENT_DIR}/SmartTickerFrontend/main*; do
+        for file in ${CURRENT_DIR}/Qcomm_Frontend/main*; do
             sed -i 's|https://domain.com|'${PROTOCOL}://${backend_domain_name}'|g' "$file"
         done
     else
@@ -329,7 +329,7 @@ if [[ "$enable_ssl" == "y" ]]; then
         listen 443 ssl;
         server_name $frontend_domain_name www.$frontend_domain_name;
         server_tokens off;
-        root ${CURRENT_DIR}/SmartTickerFrontend;
+        root ${CURRENT_DIR}/Qcomm_Frontend;
         index index.html index.htm index.nginx-debian.html;
         location / {
                 try_files \$uri \$uri/ /index.html;
@@ -375,7 +375,7 @@ else
         listen $port_number;
         server_name $frontend_domain_name www.$frontend_domain_name;
         server_tokens off;
-        root ${CURRENT_DIR}/SmartTickerFrontend;
+        root ${CURRENT_DIR}/Qcomm_Frontend;
         index index.html index.htm index.nginx-debian.html;
         location / {
                 try_files \$uri \$uri/ /index.html;
@@ -432,7 +432,7 @@ server {
     server_name $frontend_domain_name www.$frontend_domain_name;
     client_max_body_size 100M;
     server_tokens off;
-    root ${CURRENT_DIR}/SmartTickerFrontend;
+    root ${CURRENT_DIR}/Qcomm_Frontend;
     index index.html index.htm index.nginx-debian.html;
 
     location / {
@@ -480,7 +480,7 @@ server {
     listen $port_number;
     server_name $frontend_domain_name www.$frontend_domain_name;
     server_tokens off;
-    root ${CURRENT_DIR}/SmartTickerFrontend;
+    root ${CURRENT_DIR}/Qcomm_Frontend;
     index index.html index.htm index.nginx-debian.html;
 
     location / {

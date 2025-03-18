@@ -96,12 +96,12 @@ install_essentials() {
 unzipping_folders() {
     sudo apt install -y unzip
     unzip Qcomm_Signage.zip -d ${CURRENT_DIR}
-    mkdir -p ${CURRENT_DIR}/SmartTickerFrontend
-    mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/SmartTickerFrontend
-    cd ${CURRENT_DIR}/SmartTickerFrontend
+    mkdir -p ${CURRENT_DIR}/Qcomm_Frontend
+    mv ${CURRENT_DIR}/dist.zip ${CURRENT_DIR}/Qcomm_Frontend
+    cd ${CURRENT_DIR}/Qcomm_Frontend
     unzip dist.zip
     cd ${CURRENT_DIR}
-    for file in ${CURRENT_DIR}/SmartTickerFrontend/main*; do
+    for file in ${CURRENT_DIR}/Qcomm_Frontend/main*; do
         sed -i 's|https://domain.com|'${PROTOCOL}://${backend_domain_name}'|g' "$file"
     done
 }
@@ -269,7 +269,7 @@ configure_nginx() {
         listen 443 ssl;
         server_name $frontend_domain_name www.$frontend_domain_name;
         server_tokens off;
-        root ${CURRENT_DIR}/SmartTickerFrontend;
+        root ${CURRENT_DIR}/Qcomm_Frontend;
         index index.html index.htm index.nginx-debian.html;
         location / {
                 try_files \$uri \$uri/ /index.html;
@@ -315,7 +315,7 @@ else
         listen $port_number;
         server_name $frontend_domain_name www.$frontend_domain_name;
         server_tokens off;
-        root ${CURRENT_DIR}/SmartTickerFrontend;
+        root ${CURRENT_DIR}/Qcomm_Frontend;
         index index.html index.htm index.nginx-debian.html;
         location / {
                 try_files \$uri \$uri/ /index.html;
